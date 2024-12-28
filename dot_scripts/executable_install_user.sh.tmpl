@@ -5,6 +5,10 @@
 # Flatpak
 flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update --noninteractive -y
+flatpak install --noninteractive -y --system flathub \
+  com.brave.Browser \
+  com.discordapp.Discord \
+  md.obsidian.Obsidian
 flatpak uninstall --unused
 
 # GNOME settings & extensions
