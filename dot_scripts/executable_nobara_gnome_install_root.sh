@@ -11,6 +11,7 @@ dnf install -y \
   wezterm \
   nautilus-python \
   fish \
+  syncthing \
   gcc-c++ \
   procps-ng curl file git # brew dependencies https://docs.brew.sh/Homebrew-on-Linux#requirements
 
@@ -25,3 +26,6 @@ dnf -y install dnf-plugins-core \
   && systemctl enable docker.service \
   && systemctl enable containerd.service \
   && sed -i 's/LimitNOFILE=infinity/LimitNOFILE=1024/' /usr/lib/systemd/system/docker.service
+
+# Enable services
+systemctl enable --now syncthing@$SUDO_USER.service
