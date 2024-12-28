@@ -9,7 +9,7 @@ flatpak install --noninteractive -y --system flathub \
   com.brave.Browser \
   com.discordapp.Discord \
   md.obsidian.Obsidian
-flatpak uninstall --unused
+flatpak uninstall --unused --noninteractive -y
 
 # GNOME settings & extensions
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" # Set Capslock as Escape
