@@ -25,12 +25,19 @@ README.md
 .local
 {{- end }}
 
+{{- if not .sudo -}}
+# Ignore root files
+.scripts/fedora_gnome_install_root.sh
+.scripts/nobara_gnome_install_root.sh
+{{ else }}
 {{ if ne .osid "linux-fedora" -}}
 # Ignore fedora files
 .scripts/fedora_gnome_install_root.sh
-.scripts/fedora_gnome_install_user.sh
-{{- else if not .sudo -}}
-.scripts/fedora_gnome_install_root.sh
+{{- end -}}
+{{ if ne .osid "linux-nobara" -}}
+# Ignore nobara files
+.scripts/nobara_gnome_install_root.sh
+{{- end -}}
 {{- end -}}
 
 {{ if ne .chezmoi.hostname "lenovo-fedora" -}}

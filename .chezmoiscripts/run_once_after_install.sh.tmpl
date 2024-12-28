@@ -5,6 +5,8 @@ set -e
 {{ if .sudo -}}
 {{- if eq .osid "linux-fedora" -}}
 sudo ~/.scripts/fedora_gnome_install_root.sh
+{{- else if eq .osid "linux-nobara" -}}
+sudo ~/.scripts/nobara_gnome_install_root.sh
 {{ end -}}
 
 # Install brew
