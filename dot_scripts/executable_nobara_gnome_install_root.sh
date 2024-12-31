@@ -13,6 +13,7 @@ dnf install -y \
   fish \
   syncthing \
   gcc-c++ \
+  dejavu-sans-mono-fonts \
   procps-ng curl file git # brew dependencies https://docs.brew.sh/Homebrew-on-Linux#requirements
 
 # Install Docker-CE
