@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dnf upgrade --refresh -y
+# https://wiki.nobaraproject.org/general-usage/troubleshooting/update-system
+nobara-sync cli
 
 test -f /usr/bin/open || ln -s /usr/bin/xdg-open /usr/bin/open
 
