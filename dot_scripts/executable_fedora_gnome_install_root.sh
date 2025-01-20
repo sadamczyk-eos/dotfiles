@@ -12,6 +12,7 @@ dnf copr enable -y wezfurlong/wezterm-nightly
 dnf config-manager --set-enabled google-chrome
 dnf groupinstall -y 'Development Tools'
 dnf install -y \
+  dnf-plugins-core \
   pipx \
   geary \
   google-chrome-stable \
@@ -33,8 +34,7 @@ rm dbeaver-ce-latest-stable.x86_64.rpm
 # https://docs.docker.com/engine/install/fedora/
 # The sed command fixes extremely slow RPM package installation (yum etc.);
 # fixed in the docker images of newer RPM-based distros: https://github.com/rpm-software-management/rpm/commit/5e6f05cd8dad6c1ee6bd1e6e43f176976c9c3416
-dnf -y install dnf-plugins-core \
-  && dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
+dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
   && dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   && usermod -aG docker $SUDO_USER \
   && systemctl enable docker.service \
@@ -55,3 +55,7 @@ EOM
 dnf install -y libxcrypt-compat.x86_64 \
   && dnf install -y google-cloud-cli google-cloud-cli-skaffold google-cloud-cli-gke-gcloud-auth-plugin
 
+# Install Terraform
+# https://developer.hashicorp.com/terraform/install#linux
+dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
+  && dnf -y install terraform
