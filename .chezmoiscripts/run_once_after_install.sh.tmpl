@@ -4,18 +4,18 @@ set -e
 
 {{ if .sudo -}}
 echo "Running root installer..."
-{{- if eq .osid "linux-fedora" -}}
+{{ if eq .osid "linux-fedora" -}}
 sudo ~/.scripts/fedora_gnome_install_root.sh
-{{- else if eq .osid "linux-nobara" -}}
+{{ else if eq .osid "linux-nobara" -}}
 sudo ~/.scripts/nobara_gnome_install_root.sh
-{{ end -}}
+{{- end }}
 
 # Install brew
 # The root install script can run for a long time. If sudo times out here, allow continuing after coming back to the device.
 echo "Installing brew..."
 sudo -v || read -p "Couldn't get sudo. Trying one more time. Press ANY key to continue..." -n 1 -s
 command -v brew >/dev/null || { sudo -v && NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; }
-{{ end -}}
+{{- end }}
 
 echo "Sourcing .bash_profile..."
 source ~/.bash_profile
