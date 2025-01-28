@@ -1,0 +1,3 @@
+# https://github.com/balbuf/composer-git-merge-driver
+composer.json merge=composer_json
+composer.lock merge=composer_json

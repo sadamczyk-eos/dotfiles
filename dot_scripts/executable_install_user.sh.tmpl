@@ -66,6 +66,10 @@ pipx upgrade --install --system-site-packages gnome-extensions-cli
 # Install fisher, then run update
 fish -c 'type -q fisher >/dev/null || begin; curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; end; fisher update'
 
+ # Global composer installs
+composer global require \
+  balbuf/composer-git-merge-driver
+
 # Interactive / manual commands at the end
 # The prompt for the installation of the GNOME extensions times out quite quickly,
 # so run gcloud init (or read) first instead, since it also requires confirmation, but doesn't timeout.
