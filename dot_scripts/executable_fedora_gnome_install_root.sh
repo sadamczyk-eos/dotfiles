@@ -6,11 +6,11 @@ test -f /usr/bin/open || ln -s /usr/bin/xdg-open /usr/bin/open
 
 # https://www.sublimetext.com/docs/linux_repositories.html#dnf
 rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+dnf config-manager addrepo --overwrite --from-repofile=https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
 
 dnf copr enable -y wezfurlong/wezterm-nightly
-dnf config-manager --set-enabled google-chrome
-dnf groupinstall -y 'Development Tools'
+dnf config-manager setopt google-chrome.enabled=1
+dnf group install -y 'development-tools'
 dnf install -y \
   dnf-plugins-core \
   pipx \
@@ -27,14 +27,14 @@ dnf install -y \
 
 # Install DBeaver
 curl -LO https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
-dnf localinstall -y dbeaver-ce-latest-stable.x86_64.rpm
+dnf install -y dbeaver-ce-latest-stable.x86_64.rpm
 rm dbeaver-ce-latest-stable.x86_64.rpm
 
 # Install Docker-CE
 # https://docs.docker.com/engine/install/fedora/
 # The sed command fixes extremely slow RPM package installation (yum etc.);
 # fixed in the docker images of newer RPM-based distros: https://github.com/rpm-software-management/rpm/commit/5e6f05cd8dad6c1ee6bd1e6e43f176976c9c3416
-dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
+dnf config-manager addrepo --overwrite --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo \
   && dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   && usermod -aG docker $SUDO_USER \
   && systemctl enable docker.service \
@@ -57,5 +57,5 @@ dnf install -y libxcrypt-compat.x86_64 \
 
 # Install Terraform
 # https://developer.hashicorp.com/terraform/install#linux
-dnf config-manager addrepo --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
+dnf config-manager addrepo --overwrite --from-repofile=https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
   && dnf -y install terraform
