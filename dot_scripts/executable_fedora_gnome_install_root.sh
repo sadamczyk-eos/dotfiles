@@ -13,6 +13,7 @@ dnf config-manager setopt google-chrome.enabled=1
 dnf group install -y 'development-tools'
 dnf install -y \
   dnf-plugins-core \
+  python3.12 \
   pipx \
   geary \
   google-chrome-stable \

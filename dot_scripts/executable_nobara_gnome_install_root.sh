@@ -8,6 +8,7 @@ test -f /usr/bin/open || ln -s /usr/bin/xdg-open /usr/bin/open
 dnf copr enable -y wezfurlong/wezterm-nightly
 dnf group install -y 'development-tools'
 dnf install -y \
+  python3.12 \
   pipx \
   wezterm \
   nautilus-python \
