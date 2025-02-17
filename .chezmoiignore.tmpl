@@ -46,3 +46,7 @@ README.md
 .config/autostart/easyeffects-service.desktop
 {{- end }}
 
+{{ if not .work -}}
+# Ignore work files
+.config/fish/conf.d/90-work.fish
+{{- end }}
