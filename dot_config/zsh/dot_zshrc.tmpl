@@ -1,0 +1,66 @@
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+export CLICOLOR=1 # Make ls use colors by default
+export PATH="/usr/local/bin:$PATH"
+export LESS="-Rx4" # -R for color, -x4 for tabs = 4 spaces
+export PROMPT="%? %~ %% "
+
+# Aliases
+alias l='ls -lh'
+alias ll='ls -lAh'
+alias d='docker'
+alias dc='docker compose'
+alias dcu='docker compose up -d'
+alias dcub='docker compose up -d --build'
+alias dcb='docker compose build'
+alias dcd='docker compose down'
+alias dps='docker ps'
+alias vi="nvim"
+alias vim="nvim"
+
+# Functions
+# No arguments: `git status`
+# With arguments: acts like `git`
+g() {
+	if [[ $# -gt 0 ]]; then
+		git "$@"
+	else
+		git status
+	fi
+}
+
+# Add additional configs not tracked by chezmoi
+source ~/.config/zsh/local_zshrc
+
+{{ if .work -}}
+# EOS Aliases
+alias s='cd ~/Projects/shops/'
+alias c='bin/console'
+alias phpunit='clear && vendor/phpunit/phpunit/phpunit'
+alias upd='./update.sh'
+alias t='./test.sh'
+alias pre='./pre-commit.sh'
+alias start='dcub && sleep 60 && upd'
+alias runall='pre && upd && clear && t'
+alias dce='docker compose exec'
+alias back='docker compose exec apache-backend bash'
+alias front='docker compose exec apache-frontend bash'
+alias redis='docker compose exec redis redis-cli'
+alias elastic='docker compose exec elasticsearch bash'
+alias supervisorctl='docker compose exec rabbitmq-consumers supervisorctl'
+alias clc='docker compose run --rm apache-backend find '\''app/cache/'\'' '\''public/published_elements/'\'' -maxdepth 1 -mindepth 1 -type d -exec rm -rf '\''{}'\'' \; && echo '\''Cleared backend cache'\''; docker compose run --rm apache-frontend find '\''app/cache/'\'' -maxdepth 1 -mindepth 1 -type d -exec rm -rf '\''{}'\'' \; && echo '\''Cleared frontend cache'\'''
+alias pw=$'php -r "echo password_hash(\'test\', PASSWORD_BCRYPT) . PHP_EOL;"'
+alias clearbadge='defaults write com.apple.systempreferences AttentionPrefBundleIDs 0 && killall Dock' # Hides annoying red badge for Big Sur update...
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sadamczyk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sadamczyk/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sadamczyk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sadamczyk/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Add kubectl completions
+source <(kubectl completion zsh)
+
+# Add personal dev scripts
+export PATH=$HOME/Projects/sadamczyk-eos/bin/bin/:$PATH
+{{- end }}
