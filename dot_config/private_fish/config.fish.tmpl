@@ -23,7 +23,7 @@ if status is-interactive
     abbr -a -- d docker
     abbr -a -- dc docker compose
     abbr -a -- dcb 'docker compose --profile "*" build'
-    abbr -a -- dcd 'docker compose --profile "*" down'
+    abbr -a -- dcd 'docker compose --profile "*" stop'
     abbr -a -- dcu 'docker compose --profile "*" up -d'
     abbr -a -- dcub 'docker compose --profile "*" up --build -d'
     abbr -a -- dps 'docker ps --format "{{`table {{.ID}}\t{{ .Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}`}}"'
