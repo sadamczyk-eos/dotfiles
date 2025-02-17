@@ -25,4 +25,4 @@ end
 
 export EOS_SHOP_ENV="$HOME/Projects/misc/env"
 export EOS_FRAMEWORK_PATH="$HOME/Projects/eos"
-export PATH="$HOME/Projects/pastebin/bin:$HOME/Projects/sadamczyk-eos/bin/bin:$PATH"
+export PATH="$HOME/Projects/pastebin/bin:$HOME/Projects/sadamczyk/bin/bin:$PATH"
