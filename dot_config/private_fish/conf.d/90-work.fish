@@ -6,7 +6,7 @@ if status is-interactive
     abbr -a -- elastic 'docker compose exec elasticsearch bash'
     abbr -a -- front 'docker compose exec php-frontend bash'
     abbr -a -- redis 'docker compose exec redis redis-cli'
-    abbr -a -- start 'docker compose --profile "*" up --build -d && sleep 60 && ./update.sh'
+    abbr -a -- start 'docker compose --profile "*" up --build -d && sleep 90 && ./update.sh'
     abbr -a -- supervisorctl 'docker compose exec rabbitmq-consumers supervisorctl'
     abbr -a -- clc docker compose\ run\ --rm\ php-backend\ find\ \'app/cache/\'\ \'public/published_elements/\'\ -maxdepth\ 1\ -mindepth\ 1\ -type\ d\ -exec\ rm\ -rf\ \'\{\}\'\ \\\;\ \&\&\ echo\ \'Cleared\ backend\ cache\'\;\ docker compose\ run\ --rm\ php-frontend\ find\ \'app/cache/\'\ -maxdepth\ 1\ -mindepth\ 1\ -type\ d\ -exec\ rm\ -rf\ \'\{\}\'\ \\\;\ \&\&\ echo\ \'Cleared\ frontend\ cache\'\;
     # cll = CLear symLinks
