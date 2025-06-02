@@ -5,10 +5,10 @@ theme = "solarized_dark"
 theme = "solarized_light"
 {{- end -}}
 {{- else -}}
-{{- if eq "prefer-dark" (output "gsettings" "get" "org.gnome.desktop.interface" "color-scheme" | trim | trimAll "'") -}}
-theme = "solarized_dark"
-{{- else -}}
+{{- if eq "prefer-light" (output "gsettings" "get" "org.gnome.desktop.interface" "color-scheme" | trim | trimAll "'") -}}
 theme = "solarized_light"
+{{- else -}}
+theme = "solarized_dark"
 {{- end -}}
 {{- end }}
 
@@ -20,6 +20,9 @@ line-number = "relative"
 hidden = false # Show hidden files (vendor etc.)
 git-ignore = true
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 # Might not be needed in the future? https://github.com/helix-editor/helix/issues/3001
 A-d = "delete_selection"
@@ -28,4 +31,10 @@ A-c = "change_selection"
 c = "change_selection_noyank"
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 C-e = [":new", ":insert-output lf", ":buffer-close!", ":redraw"]
+X = ["extend_line_up", "extend_to_line_bounds"]
 
+[keys.normal.g]
+e = "goto_file_end" # Fix for files without a newline at the end
+
+[keys.select]
+X = ["extend_line_up", "extend_to_line_bounds"]
