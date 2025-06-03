@@ -2,6 +2,12 @@ local wezterm = require 'wezterm';
 local act = wezterm.action;
 local config = {}
 
+-- Helper functions
+function mergeTable(result, toBeMerged)
+  for _, v in pairs(toBeMerged) do
+    table.insert(result, v)
+  end
+end
 
 -- Appearance
   -- Automatically switch colorscheme based on OS appearance
@@ -98,6 +104,19 @@ config.keys = {
       pane:send_text(selection)
     end)
   }},
+}
+
+copy_mode = wezterm.gui.default_key_tables().copy_mode
+mergeTable(
+  copy_mode,
+  {
+    { key = 'v', mods = 'ALT', action = act.CopyMode { SetSelectionMode = 'SemanticZone' } },
+    { key = 'K', mods = 'NONE', action = act.CopyMode { MoveBackwardZoneOfType = 'Input' } },
+    { key = 'J', mods = 'NONE', action = act.CopyMode { MoveForwardZoneOfType = 'Input' } },
+  }
+)
+config.key_tables = {
+  copy_mode = copy_mode,
 }
 
 return config
