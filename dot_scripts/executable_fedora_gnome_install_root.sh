@@ -24,6 +24,7 @@ dnf install -y \
   gcc-c++ \
   sublime-text \
   sublime-merge \
+  podman podman-machine \
   procps-ng curl file git # brew dependencies https://docs.brew.sh/Homebrew-on-Linux#requirements
 
 # Install DBeaver
