@@ -1,6 +1,6 @@
 {{- $sudo := promptBoolOnce . "sudo" "Does this user have sudo access" true -}}
 {{- $work := promptBoolOnce . "work" "Is this a work device" false -}}
-{{- $email := promptStringOnce . "email" "Git email address for the author/committer" "13919759+sadamczyk@users.noreply.github.com" -}}
+{{- $email := promptStringOnce . "email" "Git email address for the author/committer" "sadamczyk-gh@pm.me" -}}
 {{- $defaultName := "sadamczyk" -}}
 {{- if $work -}}
 {{-   $defaultName = "Sebastian Adamczyk" -}}
