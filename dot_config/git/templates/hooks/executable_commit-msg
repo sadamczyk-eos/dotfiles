@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# https://gist.github.com/sadamczyk/531f8ae3dc92ea87196a4081cda07d59
+# https://gist.github.com/sadamczyk/813e15fba295b17a06fe946d548f7491
 
-sed -i 's|https://github.com|https://www.github.com|g' "$1"
+sed -i 's|https://github.com|https://redirect.github.com|g' "$1"
 
