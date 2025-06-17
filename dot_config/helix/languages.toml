@@ -26,3 +26,22 @@ name = "json"
 # Until https://github.com/helix-editor/helix/issues/279 is resolved
 # do not auto format, because it almost always indents wrong
 auto-format = true
+
+# Grafana Alloy
+# https://github.com/helix-editor/helix/issues/12803#issuecomment-2847123257
+# Install via `brew install alloy`: https://github.com/AlloyTools/org.alloytools.alloy
+[language-server.alloy]
+command = "alloy"
+args = [ "lsp" ]
+
+[[language]]
+name = "alloy"
+scope = "source.alloy"
+file-types = [ "als", "alloy" ]
+language-servers = [ "alloy" ]
+comment-tokens = "//"
+
+[[grammar]]
+name = "alloy"
+# source = { git = "https://github.com/fore-stun/tree-sitter-alloy.git", rev = "26d70b6745d10380b87a98a25cd7159c68a0f668" }
+source = { git = "https://github.com/mattsre/tree-sitter-alloy", rev = "3e18eb4e97f06c57a3925f3d20bef6329a6eaef3" }
